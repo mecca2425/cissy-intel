@@ -181,6 +181,8 @@ async function fetchBriefing(keyword){
   }
 }
 function renderBriefing(text){
+  // Strip any preamble before the first numbered point
+  const fp=text.search(/\n?1[\.)]/);if(fp>0)text=text.substring(fp).trim();
   fullText=text;
   const lines=text.split('\n').filter(l=>l.trim());
   const items=[];let current='';
